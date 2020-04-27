@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\custom\apps\chat\" />
+    <Folder Include="wwwroot\custom\apps\contacts\" />
+    <Folder Include="wwwroot\custom\apps\projects\" />
+    <Folder Include="wwwroot\custom\apps\support-center\" />
+    <Folder Include="wwwroot\custom\apps\todo\" />
+    <Folder Include="wwwroot\custom\apps\user\profile-1\" />
+    <Folder Include="wwwroot\custom\pages\error\" />
+    <Folder Include="wwwroot\custom\pages\faq\" />
+    <Folder Include="wwwroot\custom\pages\invoices\" />
+    <Folder Include="wwwroot\custom\pages\pricing\" />
+    <Folder Include="wwwroot\custom\pages\user\" />
+    <Folder Include="wwwroot\custom\pages\wizard\" />
+    <Folder Include="wwwroot\dashboards\" />
+    <Folder Include="wwwroot\layout\general\" />
+    <Folder Include="wwwroot\layout\skins\" />
+    <Folder Include="wwwroot\layout\subheader\" />
+  </ItemGroup>
+
+</Project>

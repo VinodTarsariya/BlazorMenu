@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BlazorMenuMetronic\**" />
+    <Content Remove="BlazorMenuMetronic\**" />
+    <EmbeddedResource Remove="BlazorMenuMetronic\**" />
+    <None Remove="BlazorMenuMetronic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\custom\apps\chat\" />
     <Folder Include="wwwroot\custom\apps\contacts\" />
     <Folder Include="wwwroot\custom\apps\projects\" />

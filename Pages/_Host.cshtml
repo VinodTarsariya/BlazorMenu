@@ -90,32 +90,175 @@
 
     <!--end::Page Scripts -->
     <script type="text/javascript">
-        window.OnFirstLevelMenuClick = (LastActiveMenuId, ElementId) => {
-            if (LastActiveMenuId != ElementId) {
-                var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
-                if (lastActiveMenuElement.classList.contains("kt-menu__item--open-dropdown") || lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
-                    lastActiveMenuElement.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+        window.OnFirstLevelMenuClick = (LastActiveMenuId, ElementId, IsMobileHeaderClicked) => {
+            if (IsMobileHeaderClicked == true) {
+
+                //If previous selected and current selected menu are different then remove class from previous selected menu.
+                if (LastActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
+                    if (lastActiveMenuElement.classList.contains("kt-menu__item--open")) {
+                        lastActiveMenuElement.classList.remove("kt-menu__item--open");
+                    }
+                }
+                var element = document.getElementById(ElementId);
+                //If currently clicked menu is already opened then close it otherwise open it.
+                if (element.classList.contains("kt-menu__item--open")) {
+                    element.classList.remove("kt-menu__item--open");
+
+                    //Start for mobile device.
+                    var x = document.getElementById(ElementId).querySelectorAll("div");
+                    x[0].style.display = "none";
+                    x[0].style.overflow = "hidden";
+                    //Finished for mobile device
+                }
+                else {
+                    element.classList.add("kt-menu__item--open");
+
+                    //Start for mobile device.
+                    var x = document.getElementById(ElementId).querySelectorAll("div");
+                    x[0].style.display = null;
+                    x[0].style.overflow = null;
+                    //Finished for mobile device
+                }
+
+                //If previous mode is desktop then remove that class
+                if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
+                    element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
                 }
             }
+            else {
+                if (LastActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
+                    if (lastActiveMenuElement.classList.contains("kt-menu__item--open-dropdown") || lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
+                        lastActiveMenuElement.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                    }
+                }
+                var element = document.getElementById(ElementId);
+                if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
+                    element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                }
+                else {
+                    element.classList.add("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                }
+
+                //If previous mode is mobile then remove that class
+                if (element.classList.contains("kt-menu__item--open")) {
+                    element.classList.remove("kt-menu__item--open");
+                }
+            }
+        }
+        window.OnSecondLevelMenuClick = (LastSecondLevelActiveMenuId, ElementId, IsMobileHeaderClicked) => {
+
+            if (IsMobileHeaderClicked == true) {
+
+                //If previous selected and current selected menu are different then remove class from previous selected menu.
+                if (LastActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
+                    if (lastActiveMenuElement.classList.contains("kt-menu__item--open")) {
+                        lastActiveMenuElement.classList.remove("kt-menu__item--open");
+                    }
+                }
+                var element = document.getElementById(ElementId);
+                //If currently clicked menu is already opened then close it otherwise open it.
+                if (element.classList.contains("kt-menu__item--open")) {
+                    element.classList.remove("kt-menu__item--open");
+
+                    //Start for mobile device.
+                    var x = document.getElementById(ElementId).querySelectorAll("div");
+                    x[0].style.display = "none";
+                    x[0].style.overflow = "hidden";
+                    //Finished for mobile device
+                }
+                else {
+                    element.classList.add("kt-menu__item--open");
+
+                    //Start for mobile device.
+                    var x = document.getElementById(ElementId).querySelectorAll("div");
+                    x[0].style.display = null;
+                    x[0].style.overflow = null;
+                    //Finished for mobile device
+                }
+
+                //If previous mode is desktop then remove that class
+                if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
+                    element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                }
+            }
+            else {
+
+                if (LastSecondLevelActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastSecondLevelActiveMenuId);
+                    if (lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
+                        lastActiveMenuElement.classList.remove("kt-menu__item--hover");
+                    }
+                }
+                var element = document.getElementById(ElementId);
+                if (element.classList.contains("kt-menu__item--hover")) {
+                    element.classList.remove("kt-menu__item--hover");
+                } else {
+                    element.classList.add("kt-menu__item--hover");
+                }
+
+                //If previous mode is mobile then remove that class
+                if (element.classList.contains("kt-menu__item--open")) {
+                    element.classList.remove("kt-menu__item--open");
+                }
+
+            }
+        }
+
+        window.OnMobileHeaderClick = (ElementId) => {
+
+            var element = document.getElementById("kt_header_mobile_toggler");
+            if (element.classList.contains("kt-header-mobile__toolbar-toggler--active")) {
+                element.classList.remove("kt-header-mobile__toolbar-toggler--active");
+                document.querySelector('body').classList.remove('kt-header-menu-wrapper--on');
+            } else {
+                element.classList.add("kt-header-mobile__toolbar-toggler--active");
+                document.querySelector('body').classList.add('kt-header-menu-wrapper--on');
+            }
+            var element2 = document.getElementById("kt_header_menu_wrapper");
+            if (element2.classList.contains("kt-header-menu-wrapper--on")) {
+                element2.classList.remove("kt-header-menu-wrapper--on");
+            }
+            else {
+                element2.classList.add("kt-header-menu-wrapper--on");
+            }
+
+            var element3 = document.getElementById("kt_header_menu_wrapper_overlay");
+            if (element3.classList.contains("kt-header-menu-wrapper-overlay")) {
+                element3.classList.remove("kt-header-menu-wrapper-overlay");
+            }
+            else {
+                element3.classList.add("kt-header-menu-wrapper-overlay");
+            }
+
+        }
+
+        window.OnMobileHeaderCloseClick = (ElementId, IsMobileHeaderClicked) => {
+
+            var element = document.getElementById("kt_header_mobile_toggler");
+            if (element.classList.contains("kt-header-mobile__toolbar-toggler--active")) {
+                element.classList.remove("kt-header-mobile__toolbar-toggler--active");
+                document.querySelector('body').classList.remove('kt-header-menu-wrapper--on');
+            }
+            var element2 = document.getElementById("kt_header_menu_wrapper");
+            if (element2.classList.contains("kt-header-menu-wrapper--on")) {
+                element2.classList.remove("kt-header-menu-wrapper--on");
+            }
+
+            var element3 = document.getElementById("kt_header_menu_wrapper_overlay");
+            if (element3.classList.contains("kt-header-menu-wrapper-overlay")) {
+                element3.classList.remove("kt-header-menu-wrapper-overlay");
+            }
+        }
+        window.Test = (ElementId) => {
+
             var element = document.getElementById(ElementId);
             if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
                 element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
             } else {
                 element.classList.add("kt-menu__item--open-dropdown", "kt-menu__item--hover");
-            }
-        }
-        window.OnSecondLevelMenuClick = (LastSecondLevelActiveMenuId, ElementId) => {
-            if (LastSecondLevelActiveMenuId != ElementId) {
-                var lastActiveMenuElement = document.getElementById(LastSecondLevelActiveMenuId);
-                if (lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
-                    lastActiveMenuElement.classList.remove("kt-menu__item--hover");
-                }
-            }
-            var element = document.getElementById(ElementId);
-            if (element.classList.contains("kt-menu__item--hover")) {
-                element.classList.remove("kt-menu__item--hover");
-            } else {
-                element.classList.add("kt-menu__item--hover");
             }
         }
         window.OnThirdLevelMenuClick = (LastThirdLevelActiveMenuId, ElementId) => {
@@ -132,16 +275,6 @@
                 element.classList.add("kt-menu__item--hover");
             }
         }
-        window.Test = (ElementId) => {
-
-            var element = document.getElementById(ElementId);
-            if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
-                element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
-            } else {
-                element.classList.add("kt-menu__item--open-dropdown", "kt-menu__item--hover");
-            }
-        }
-
     </script>
 
     <script src="_framework/blazor.server.js"></script>

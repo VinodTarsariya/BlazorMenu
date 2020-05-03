@@ -6,6 +6,7 @@
 <!-- end::Page Loader -->
 <!-- begin:: Page -->
 <!-- begin:: Header Mobile -->
+
 <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
     <div class="kt-header-mobile__logo">
         <a href="index.html">
@@ -50,69 +51,69 @@
                         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
                             <ul class="kt-menu__nav ">
                                 @*@if (menuModel != null)
-                    {
-                    foreach (var menuItem in menuModel.Where(x => x.ParentId == string.Empty))
-                    {
-                    //If current menu is main header menu
-                    <li class=@MenuClass data-ktmenu-submenu-toggle="click" aria-haspopup="true" @onclick="@MenuClick">
-                        <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                            <span class="kt-menu__link-text">@menuItem.MenuName</span>
-                            <i class="kt-menu__ver-arrow la la-angle-right">
-                            </i>
-                        </a>
+                                    {
+                                    foreach (var menuItem in menuModel.Where(x => x.ParentId == string.Empty))
+                                    {
+                                    //If current menu is main header menu
+                                    <li class=@MenuClass data-ktmenu-submenu-toggle="click" aria-haspopup="true" @onclick="@MenuClick">
+                                        <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                                            <span class="kt-menu__link-text">@menuItem.MenuName</span>
+                                            <i class="kt-menu__ver-arrow la la-angle-right">
+                                            </i>
+                                        </a>
 
-                        <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-                            <ul class="kt-menu__subnav">
-                                If submenu has not child
+                                        <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                                            <ul class="kt-menu__subnav">
+                                                If submenu has not child
 
-                                int subMenuChildCount = menuModel.Where(y => y.ParentId == menuItem.MenuId).Count();        if (subMenuChildCount == 0)
-                                @if (menuModel.Where(y => y.ParentId == menuItem.MenuId).Count() == 0)
-                                {
-                                <li class="kt-menu__item " aria-haspopup="true">
-                                    <a href="index.html" class="kt-menu__link ">
-                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                                            <span></span>
-                                        </i>
-                                        <span class="kt-menu__link-text">@menuModel.Where(y => y.ParentId == menuItem.MenuId).Select(a => a.MenuName).FirstOrDefault()</span>
-                                    </a>
-                                </li>
-                                }
-                                else
-                                {
-                                //If submenu has child
-                                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-                                    <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                                        <i class="kt-menu__link-icon flaticon2-start-up">
-                                        </i>
-                                        <span class="kt-menu__link-text">@menuModel.Where(y => y.ParentId == menuItem.MenuId).Select(a => a.MenuName).FirstOrDefault()</span>
-                                        <i class="kt-menu__hor-arrow la la-angle-right">
-                                        </i>
-                                    </a>
-                                    <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-                                        <ul class="kt-menu__subnav">
-                                            @foreach (var submenuItem in menuModel.Where(y => y.ParentId == menuItem.MenuId))
-                                            {
-                                            <li class="kt-menu__item " aria-haspopup="true">
-                                                <a href="index.html" class="kt-menu__link ">
-                                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-                                                        <span>
-                                                        </span>
-                                                    </i>
-                                                    <span class="kt-menu__link-text">@submenuItem.MenuName</span>
-                                                </a>
-                                            </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                </li>
-                                }
-                            </ul>
-                        </div>
+                                                int subMenuChildCount = menuModel.Where(y => y.ParentId == menuItem.MenuId).Count();        if (subMenuChildCount == 0)
+                                                @if (menuModel.Where(y => y.ParentId == menuItem.MenuId).Count() == 0)
+                                                {
+                                                <li class="kt-menu__item " aria-haspopup="true">
+                                                    <a href="index.html" class="kt-menu__link ">
+                                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="kt-menu__link-text">@menuModel.Where(y => y.ParentId == menuItem.MenuId).Select(a => a.MenuName).FirstOrDefault()</span>
+                                                    </a>
+                                                </li>
+                                                }
+                                                else
+                                                {
+                                                //If submenu has child
+                                                <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+                                                    <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                                                        <i class="kt-menu__link-icon flaticon2-start-up">
+                                                        </i>
+                                                        <span class="kt-menu__link-text">@menuModel.Where(y => y.ParentId == menuItem.MenuId).Select(a => a.MenuName).FirstOrDefault()</span>
+                                                        <i class="kt-menu__hor-arrow la la-angle-right">
+                                                        </i>
+                                                    </a>
+                                                    <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
+                                                        <ul class="kt-menu__subnav">
+                                                            @foreach (var submenuItem in menuModel.Where(y => y.ParentId == menuItem.MenuId))
+                                                            {
+                                                            <li class="kt-menu__item " aria-haspopup="true">
+                                                                <a href="index.html" class="kt-menu__link ">
+                                                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                                                                        <span>
+                                                                        </span>
+                                                                    </i>
+                                                                    <span class="kt-menu__link-text">@submenuItem.MenuName</span>
+                                                                </a>
+                                                            </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                }
+                                            </ul>
+                                        </div>
 
-                    </li>
+                                    </li>
 
-                    }
-                    }*@
+                                    }
+                                    }*@
                                 @*Level 1 Start*@
 
                                 @if (menuModel != null)
@@ -2890,7 +2891,7 @@
                         </div>
                     </div>
                     @*<div class="kt-header-menu-wrapper-overlay" id="kt_header_menu_wrapper_overlay"></div>*@
-                    <div class="" id="kt_header_menu_wrapper_overlay"></div>
+                    <div class="" id="kt_header_menu_wrapper_overlay" @onclick="@(()=>OnMobileHeaderCloseClick("kt_header_menu_mobile_close_btn"))"></div>
                     <!-- end: Header Menu -->
                     <!-- begin:: Brand -->
                     <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
@@ -3119,15 +3120,13 @@
     </div>
 </div>
 
-
-
 <!--ENd:: Chat-->
 @code{
 
     //string MenuClass = "kt-menu__item  kt-menu__item--submenu kt-menu__item--rel";
     string MenuClass = "kt-menu__item  kt-menu__item--submenu kt-menu__item--rel";
     bool IsMenuFirstClicked = true;
-
+    string LastActiveRootMenuId;
     protected void MenuClick()
     {
         if (IsMenuFirstClicked)
@@ -3210,8 +3209,19 @@
             }
             IsSecondLevelMenuItemClicked = true;
 
-            await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastSecondLevelActiveMenuId, ElementId, IsMobileHeaderClicked);
+            bool HasChild = menuModel.Where(x => x.ParentId == ElementId).Count() > 0 ? true : false;
+
+            await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastSecondLevelActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild);
             LastSecondLevelActiveMenuId = ElementId;
+
+            //If current menu is last menu then make root menu of current as active menu.
+            await SearchAndActivateRootMenuAsync(ElementId);
+
+            if (IsMobileHeaderClicked && !HasChild)
+            {
+                await OnMobileHeaderCloseClick("kt_header_menu_mobile_close_btn");
+            }
+
         }
         //else
         //{
@@ -3231,8 +3241,18 @@
             }
             IsThirdLevelMenuItemClicked = true;
 
-            await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastThirdLevelActiveMenuId, ElementId, IsMobileHeaderClicked);
+            bool HasChild = menuModel.Where(x => x.ParentId == ElementId).Count() > 0 ? true : false;
+
+            await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastThirdLevelActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild);
             LastThirdLevelActiveMenuId = ElementId;
+
+            //If current menu is last menu then make root menu of current as active menu.
+            await SearchAndActivateRootMenuAsync(ElementId);
+
+            if (IsMobileHeaderClicked && !HasChild)
+            {
+                await OnMobileHeaderCloseClick("kt_header_menu_mobile_close_btn");
+            }
         }
     }
 
@@ -3248,8 +3268,18 @@
             }
             IsFourthLevelMenuItemClicked = true;
 
-            await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastFourthLevelActiveMenuId, ElementId, IsMobileHeaderClicked);
+            bool HasChild = menuModel.Where(x => x.ParentId == ElementId).Count() > 0 ? true : false;
+
+            await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastFourthLevelActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild);
             LastFourthLevelActiveMenuId = ElementId;
+
+            //If current menu is last menu then make root menu of current as active menu.
+            await SearchAndActivateRootMenuAsync(ElementId);
+
+            if (IsMobileHeaderClicked && !HasChild)
+            {
+                await OnMobileHeaderCloseClick("kt_header_menu_mobile_close_btn");
+            }
         }
     }
     bool IsFifthLevelMenuItemClicked;
@@ -3262,8 +3292,18 @@
         }
         IsFifthLevelMenuItemClicked = true;
 
-        await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastFifthLevelActiveMenuId, ElementId, IsMobileHeaderClicked);
+        bool HasChild = menuModel.Where(x => x.ParentId == ElementId).Count() > 0 ? true : false;
+
+        await JSRuntime.InvokeVoidAsync("OnSecondLevelMenuClick", LastFifthLevelActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild);
         LastFifthLevelActiveMenuId = ElementId;
+
+        //If current menu is last menu then make root menu of current as active menu.
+        await SearchAndActivateRootMenuAsync(ElementId);
+
+        if (IsMobileHeaderClicked && !HasChild)
+        {
+            await OnMobileHeaderCloseClick("kt_header_menu_mobile_close_btn");
+        }
 
     }
     bool IsMobileHeaderClicked;
@@ -3277,6 +3317,29 @@
     {
         IsMobileHeaderClicked = false;
         await JSRuntime.InvokeVoidAsync("OnMobileHeaderCloseClick", ElementId, IsMobileHeaderClicked);
+    }
+    protected async Task SearchAndActivateRootMenuAsync(string ElementId)
+    {
+        bool HasChild = menuModel.Where(x => x.ParentId == ElementId).Count() > 0 ? true : false;
+        if (!HasChild)
+        {
+            string RootMenuId = string.Empty;
+            FindRootMenuId(ElementId, ref RootMenuId);
+            await JSRuntime.InvokeVoidAsync("ActivateRootMenu", LastActiveRootMenuId, RootMenuId);
+            LastActiveRootMenuId = RootMenuId;
+        }
+    }
+    protected void FindRootMenuId(string ParentMenuId, ref string RootMenuId)
+    {
+        MenuModel tempMenuModel = menuModel.Where(x => x.MenuId == ParentMenuId).FirstOrDefault();
+        if (!string.IsNullOrEmpty(tempMenuModel.ParentId))
+        {
+            FindRootMenuId(tempMenuModel.ParentId, ref RootMenuId);
+        }
+        else
+        {
+            RootMenuId = tempMenuModel.MenuId;
+        }
     }
 
 }

@@ -107,8 +107,11 @@
 
                     //Start for mobile device.
                     var x = document.getElementById(ElementId).querySelectorAll("div");
-                    x[0].style.display = "none";
-                    x[0].style.overflow = "hidden";
+                    if (x != undefined) {
+                        x[0].style.display = "none";
+                        x[0].style.overflow = "hidden";
+                    }
+
                     //Finished for mobile device
                 }
                 else {
@@ -116,8 +119,10 @@
 
                     //Start for mobile device.
                     var x = document.getElementById(ElementId).querySelectorAll("div");
-                    x[0].style.display = null;
-                    x[0].style.overflow = null;
+                    if (x != undefined) {
+                        x[0].style.display = null;
+                        x[0].style.overflow = null;
+                    }
                     //Finished for mobile device
                 }
 
@@ -147,7 +152,7 @@
                 }
             }
         }
-        window.OnSecondLevelMenuClick = (LastSecondLevelActiveMenuId, ElementId, IsMobileHeaderClicked) => {
+        window.OnSecondLevelMenuClick = (LastActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild) => {
 
             if (IsMobileHeaderClicked == true) {
 
@@ -164,18 +169,26 @@
                     element.classList.remove("kt-menu__item--open");
 
                     //Start for mobile device.
-                    var x = document.getElementById(ElementId).querySelectorAll("div");
-                    x[0].style.display = "none";
-                    x[0].style.overflow = "hidden";
+                    if (HasChild) {
+                        var x = document.getElementById(ElementId).querySelectorAll("div");
+                        if (x != undefined) {
+                            x[0].style.display = "none";
+                            x[0].style.overflow = "hidden";
+                        }
+                    }
                     //Finished for mobile device
                 }
                 else {
                     element.classList.add("kt-menu__item--open");
 
                     //Start for mobile device.
-                    var x = document.getElementById(ElementId).querySelectorAll("div");
-                    x[0].style.display = null;
-                    x[0].style.overflow = null;
+                    if (HasChild) {
+                        var x = document.getElementById(ElementId).querySelectorAll("div");
+                        if (x != undefined) {
+                            x[0].style.display = null;
+                            x[0].style.overflow = null;
+                        }
+                    }
                     //Finished for mobile device
                 }
 
@@ -186,8 +199,8 @@
             }
             else {
 
-                if (LastSecondLevelActiveMenuId != ElementId) {
-                    var lastActiveMenuElement = document.getElementById(LastSecondLevelActiveMenuId);
+                if (LastActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
                     if (lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
                         lastActiveMenuElement.classList.remove("kt-menu__item--hover");
                     }
@@ -252,6 +265,52 @@
                 element3.classList.remove("kt-header-menu-wrapper-overlay");
             }
         }
+        window.ActivateRootMenu = (LastActiveRootMenuId, RootMenuId) => {
+
+            //When website first time open at that time none menu will be selected. In that case Root Menu will be null. So no need to reset previous activated root menu.
+            if (LastActiveRootMenuId == null || LastActiveRootMenuId.length == 0) {
+                //Do nothing
+            }
+            else {
+                if (LastActiveRootMenuId != RootMenuId) {
+                    var element2 = document.getElementById(LastActiveRootMenuId);
+                    if (element2.classList.contains("kt-menu__item--here")) {
+                        element2.classList.remove("kt-menu__item--here");
+                    }
+                }
+            }
+            var element = document.getElementById(RootMenuId);
+            if (!element.classList.contains("kt-menu__item--here")) {
+                element.classList.add("kt-menu__item--here");
+            }
+            if (element.classList.contains("kt-menu__item--hover")) {
+                //element.classList.remove("kt-menu__item--hover");
+            }
+            var element = document.getElementById(RootMenuId);
+            if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
+                element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+            }
+
+        }
+        window.addEventListener('click', function (e) {
+            if (document.getElementById('kt_header').contains(e.target)) {
+                // Clicked in Header Menu
+            } else {
+                // If user click outside of the menu then close the menu.
+                //For desktop device
+                var x = document.getElementById("kt_header").querySelectorAll("li");
+                if (x != undefined) {
+                    var i;
+                    for (i = 0; i < x.length; i++) {
+                        if (x[i].classList.contains("kt-menu__item--open-dropdown") || x[i].classList.contains("kt-menu__item--hover")) {
+                            x[i].classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+
+                        }
+                    }
+                }
+            }
+        });
+
         window.Test = (ElementId) => {
 
             var element = document.getElementById(ElementId);
@@ -281,3 +340,4 @@
 
 </body>
 </html>
+@*https://stackoverflow.com/questions/36695438/detect-click-outside-div-using-javascript/47974964*@

@@ -33,7 +33,7 @@
     <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
     <!--Metronic Theme end-->
 </head>
-<body class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--left kt-aside--fixed kt-page--loading">
+<body class="kt-page--loading-enabled kt-page--loading kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
     <app>
         <component type="typeof(App)" render-mode="ServerPrerendered" />
     </app>
@@ -152,7 +152,7 @@
                 }
             }
         }
-        window.OnSecondLevelMenuClick = (LastActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild) => {
+        window.OnSubMenuClick = (LastActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild) => {
 
             if (IsMobileHeaderClicked == true) {
 
@@ -319,21 +319,7 @@
             } else {
                 element.classList.add("kt-menu__item--open-dropdown", "kt-menu__item--hover");
             }
-        }
-        window.OnThirdLevelMenuClick = (LastThirdLevelActiveMenuId, ElementId) => {
-            if (LastThirdLevelActiveMenuId != ElementId) {
-                var lastActiveMenuElement = document.getElementById(LastThirdLevelActiveMenuId);
-                if (lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
-                    lastActiveMenuElement.classList.remove("kt-menu__item--hover");
-                }
-            }
-            var element = document.getElementById(ElementId);
-            if (element.classList.contains("kt-menu__item--hover")) {
-                element.classList.remove("kt-menu__item--hover");
-            } else {
-                element.classList.add("kt-menu__item--hover");
-            }
-        }
+        }        
     </script>
 
     <script src="_framework/blazor.server.js"></script>

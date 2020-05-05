@@ -12,6 +12,8 @@ namespace BlazorMenu.Model
         public string ParentId { get; set; }
 
         public string IconClass { get; set; }
+
+        public int SerialNumber { get; set; }
                
        
     }

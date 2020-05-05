@@ -70,7 +70,7 @@
                                                         int ThirdLevelMenuItemsCount = menuModel.Where(y => y.ParentId == SecondLevelMenuItems.MenuId).Count();
                                                         <li class=@(ThirdLevelMenuItemsCount ==0 ? "kt-menu__item" : "kt-menu__item  kt-menu__item--submenu" ) aria-haspopup="true" data-ktmenu-submenu-toggle=@(ThirdLevelMenuItemsCount ==0 ?"hover" : "" ) id="@SecondLevelMenuItems.MenuId" @onclick="(()=>OnSecondLevelMenuClick(SecondLevelMenuItems.MenuId))">
 
-                                                            <a href=@(ThirdLevelMenuItemsCount ==0 ? "ComponentUrl" : "javascript:;" ) class=@(ThirdLevelMenuItemsCount ==0 ? "kt-menu__link" :"kt-menu__link kt-menu__toggle")>
+                                                            <a href=@(ThirdLevelMenuItemsCount ==0 ? @SecondLevelMenuItems.MenuUrl : "javascript:;" ) class=@(ThirdLevelMenuItemsCount ==0 ? "kt-menu__link" :"kt-menu__link kt-menu__toggle")>
                                                                 <i class="kt-menu__link-icon @SecondLevelMenuItems.IconClass">
                                                                 </i>
                                                                 <span class="kt-menu__link-text">@SecondLevelMenuItems.MenuName</span>
@@ -95,7 +95,7 @@
 
                                                                             <li class=@(FourthLevelMenuItemsCount ==0 ? "kt-menu__item" : "kt-menu__item  kt-menu__item--submenu" ) aria-haspopup="true" data-ktmenu-submenu-toggle=@(FourthLevelMenuItemsCount ==0 ?"hover" : "" ) id="@ThirdLevelMenuItems.MenuId" @onclick="(()=>OnThirdLevelMenuClick(ThirdLevelMenuItems.MenuId))">
 
-                                                                                <a href=@(FourthLevelMenuItemsCount ==0 ? "ComponentUrl" : "javascript:;" ) class=@(FourthLevelMenuItemsCount ==0 ? "kt-menu__link" :"kt-menu__link kt-menu__toggle")>
+                                                                                <a href=@(FourthLevelMenuItemsCount ==0 ? ThirdLevelMenuItems.MenuUrl : "javascript:;" ) class=@(FourthLevelMenuItemsCount ==0 ? "kt-menu__link" :"kt-menu__link kt-menu__toggle")>
                                                                                     <i class="kt-menu__link-icon @ThirdLevelMenuItems.IconClass">
                                                                                     </i>
                                                                                     <span class="kt-menu__link-text">@ThirdLevelMenuItems.MenuName</span>
@@ -119,7 +119,7 @@
                                                                                                 int FifthLevelMenuItemsCount = menuModel.Where(y => y.ParentId == ForthLevelMenuItems.MenuId).Count();
 
                                                                                                 <li class=@(FifthLevelMenuItemsCount ==0 ? "kt-menu__item" : "kt-menu__item  kt-menu__item--submenu" ) aria-haspopup="true" data-ktmenu-submenu-toggle=@(FifthLevelMenuItemsCount ==0 ?"hover" : "" ) id="@ForthLevelMenuItems.MenuId" @onclick="(()=>OnFourthLevelMenuClick(ForthLevelMenuItems.MenuId))">
-                                                                                                    <a href=@(FifthLevelMenuItemsCount ==0 ? "ComponentUrl" : "javascript:;" ) class=@(FifthLevelMenuItemsCount ==0 ? "kt-menu__link" :"kt-menu__link kt-menu__toggle")>
+                                                                                                    <a href=@(FifthLevelMenuItemsCount ==0 ? ForthLevelMenuItems.MenuUrl : "javascript:;" ) class=@(FifthLevelMenuItemsCount ==0 ? "kt-menu__link" :"kt-menu__link kt-menu__toggle")>
                                                                                                         <i class="kt-menu__link-icon @ForthLevelMenuItems.IconClass">
                                                                                                         </i>
                                                                                                         <span class="kt-menu__link-text">@ForthLevelMenuItems.MenuName</span>
@@ -141,7 +141,7 @@
                                                                                                                 {
                                                                                                                     //Level 5 data
                                                                                                                     <li class="kt-menu__item" aria-haspopup="true" id="@FifthLevelMenuItems.MenuId" @onclick="(()=>OnFifthLevelMenuClick(FifthLevelMenuItems.MenuId))">
-                                                                                                                        <a href="ComponentUrl" class="kt-menu__link">
+                                                                                                                        <a href=@FifthLevelMenuItems.MenuUrl class="kt-menu__link">
                                                                                                                             <i class="kt-menu__link-icon @FifthLevelMenuItems.IconClass">
                                                                                                                             </i>
                                                                                                                             <span class="kt-menu__link-text">@FifthLevelMenuItems.MenuName</span>
@@ -224,26 +224,26 @@
             menuModel = new List<MenuModel>
                 ();
 
-            menuModel.Add(new MenuModel { MenuId = "1", MenuName = "Dashboard", ParentId = "" , IconClass = "flaticon2-start-up", SerialNumber =11});
-            menuModel.Add(new MenuModel { MenuId = "2", MenuName = "Default Dashboard", ParentId = "1", IconClass = "flaticon2-photograph", SerialNumber = 2 });
-            menuModel.Add(new MenuModel { MenuId = "3", MenuName = "Fluid Dashboard", ParentId = "1", IconClass = "flaticon2-lorry", SerialNumber = 20});
-            menuModel.Add(new MenuModel { MenuId = "4", MenuName = "Aside Dashboard", ParentId = "1", IconClass = "flaticon2-cube-1", SerialNumber = 25 });
-            menuModel.Add(new MenuModel { MenuId = "5", MenuName = "Components", ParentId = "" , IconClass = "flaticon2-browser-1", SerialNumber = 5 });
-            menuModel.Add(new MenuModel { MenuId = "6", MenuName = "Base", ParentId = "5", IconClass = "flaticon2-pie-chart-4", SerialNumber = 178 });
-            menuModel.Add(new MenuModel { MenuId = "7", MenuName = "Custom", ParentId = "5", IconClass = "flaticon2-calendar-2", SerialNumber = 451 });
-            menuModel.Add(new MenuModel { MenuId = "8", MenuName = "Extended", ParentId = "5", IconClass = "flaticon2-graph-1", SerialNumber = 512 });
-            menuModel.Add(new MenuModel { MenuId = "9", MenuName = "Icon", ParentId = "5", IconClass = "flaticon2-location", SerialNumber = 1556 });
-            menuModel.Add(new MenuModel { MenuId = "10", MenuName = "State Color", ParentId = "6", IconClass = "flaticon2-architecture-and-city", SerialNumber = 451 });
-            menuModel.Add(new MenuModel { MenuId = "11", MenuName = "Typo Graphy", ParentId = "6", IconClass = "flaticon2-browser-2", SerialNumber = 23});
-            menuModel.Add(new MenuModel { MenuId = "12", MenuName = "Badge", ParentId = "7", IconClass = "flaticon2-list-3", SerialNumber = 156 });
-            menuModel.Add(new MenuModel { MenuId = "13", MenuName = "Navigation", ParentId = "7", IconClass = "flaticon2-writing", SerialNumber = 258 });
-            menuModel.Add(new MenuModel { MenuId = "14", MenuName = "Sticky Panel", ParentId = "8", IconClass = "flaticon2-telegram-logo", SerialNumber = 563 });
-            menuModel.Add(new MenuModel { MenuId = "15", MenuName = "Tree View", ParentId = "8", IconClass = "flaticon2-rocket", SerialNumber = 741 });
-            menuModel.Add(new MenuModel { MenuId = "16", MenuName = "Flaticon", ParentId = "9", IconClass = "flaticon2-indent-dots", SerialNumber = 156 });
-            menuModel.Add(new MenuModel { MenuId = "18", MenuName = "Vertical", ParentId = "13", IconClass = "flaticon2-search-1", SerialNumber = 693 });
-            menuModel.Add(new MenuModel { MenuId = "17", MenuName = "Horizontal", ParentId = "13", IconClass = "flaticon2-bell-alarm-symbol", SerialNumber = 145 });
-            menuModel.Add(new MenuModel { MenuId = "19", MenuName = "Full width", ParentId = "17", IconClass = "flaticon2-line-chart", SerialNumber = 561 });
-            menuModel.Add(new MenuModel { MenuId = "20", MenuName = "Fluid type", ParentId = "17", IconClass = "flaticon2-box-1", SerialNumber = 123 });
+            menuModel.Add(new MenuModel { MenuId = "1", MenuName = "Dashboard", ParentId = "" , IconClass = "flaticon2-start-up", SerialNumber =11, MenuUrl="SampleComponent"});
+            menuModel.Add(new MenuModel { MenuId = "2", MenuName = "Default Dashboard", ParentId = "1", IconClass = "flaticon2-photograph", SerialNumber = 2, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "3", MenuName = "Fluid Dashboard", ParentId = "1", IconClass = "flaticon2-lorry", SerialNumber = 20, MenuUrl="SampleComponent"});
+            menuModel.Add(new MenuModel { MenuId = "4", MenuName = "Aside Dashboard", ParentId = "1", IconClass = "flaticon2-cube-1", SerialNumber = 25, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "5", MenuName = "Components", ParentId = "" , IconClass = "flaticon2-browser-1", SerialNumber = 5, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "6", MenuName = "Base", ParentId = "5", IconClass = "flaticon2-pie-chart-4", SerialNumber = 178, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "7", MenuName = "Custom", ParentId = "5", IconClass = "flaticon2-calendar-2", SerialNumber = 451, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "8", MenuName = "Extended", ParentId = "5", IconClass = "flaticon2-graph-1", SerialNumber = 512, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "9", MenuName = "Icon", ParentId = "5", IconClass = "flaticon2-location", SerialNumber = 1556, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "10", MenuName = "State Color", ParentId = "6", IconClass = "flaticon2-architecture-and-city", SerialNumber = 451, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "11", MenuName = "Typo Graphy", ParentId = "6", IconClass = "flaticon2-browser-2", SerialNumber = 23, MenuUrl="SampleComponent"});
+            menuModel.Add(new MenuModel { MenuId = "12", MenuName = "Badge", ParentId = "7", IconClass = "flaticon2-list-3", SerialNumber = 156, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "13", MenuName = "Navigation", ParentId = "7", IconClass = "flaticon2-writing", SerialNumber = 258, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "14", MenuName = "Sticky Panel", ParentId = "8", IconClass = "flaticon2-telegram-logo", SerialNumber = 563, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "15", MenuName = "Tree View", ParentId = "8", IconClass = "flaticon2-rocket", SerialNumber = 741, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "16", MenuName = "Flaticon", ParentId = "9", IconClass = "flaticon2-indent-dots", SerialNumber = 156, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "18", MenuName = "Vertical", ParentId = "13", IconClass = "flaticon2-search-1", SerialNumber = 693, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "17", MenuName = "Horizontal", ParentId = "13", IconClass = "flaticon2-bell-alarm-symbol", SerialNumber = 145, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "19", MenuName = "Full width", ParentId = "17", IconClass = "flaticon2-line-chart", SerialNumber = 561, MenuUrl="SampleComponent" });
+            menuModel.Add(new MenuModel { MenuId = "20", MenuName = "Fluid type", ParentId = "17", IconClass = "flaticon2-box-1", SerialNumber = 123, MenuUrl="SampleComponent" });
 
             menuModel= menuModel.OrderBy(x => x.SerialNumber).ToList();
 

@@ -1,0 +1,37 @@
+﻿@page "/SampleComponent"
+@page "/SampleComponent/{Parameter1}"
+
+<div class="kt-portlet">
+    <div class="kt-portlet__body">
+        <div class="kt-infobox">
+            <div class="kt-infobox__header">
+                <h2 class="kt-infobox__title">Welcome to Component Demo</h2>
+            </div>
+            <div class="kt-infobox__body">
+                <div class="kt-infobox__section">
+                    <h3 class="kt-infobox__subtitle">Basic Information</h3>
+                    <div class="kt-infobox__content">
+
+                        @if (string.IsNullOrEmpty(Parameter1))
+                        {
+                            <h4>
+                                You haven't passed parameter1 value. You can pass it by following Parameter1="Parameter Value" in the url
+                            </h4>
+                        }
+                        else
+                        {
+                            <h4> Your parameter 1 value is : @Parameter1 at : @DateTime.Now</h4>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Parameter1 { get; set; }
+}

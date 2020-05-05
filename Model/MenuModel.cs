@@ -14,6 +14,8 @@ namespace BlazorMenu.Model
         public string IconClass { get; set; }
 
         public int SerialNumber { get; set; }
+
+        public string MenuUrl { get; set; }
                
        
     }

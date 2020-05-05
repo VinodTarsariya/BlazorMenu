@@ -10,11 +10,8 @@ namespace BlazorMenu.Model
         public string MenuId { get; set; }
         public string MenuName { get; set; }
         public string ParentId { get; set; }
-
         public string IconClass { get; set; }
-
         public int SerialNumber { get; set; }
-
         public string MenuUrl { get; set; }
                
        

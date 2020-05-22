@@ -49,8 +49,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-
-
     <!-- begin::Global Config(global config for global JS sciprts) -->
     <script>
         var KTAppOptions = {
@@ -319,11 +317,76 @@
             } else {
                 element.classList.add("kt-menu__item--open-dropdown", "kt-menu__item--hover");
             }
-        }        
+        }
+
+        window.OnFirstLevelMenu1Click = (LastActiveMenuId, ElementId, IsMobileHeaderClicked, HasChild) => {
+            if (IsMobileHeaderClicked == true) {
+
+                //If previous selected and current selected menu are different then remove class from previous selected menu.
+                if (LastActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
+                    if (lastActiveMenuElement.classList.contains("kt-menu__item--open")) {
+                        lastActiveMenuElement.classList.remove("kt-menu__item--open");
+                    }
+                }
+                var element = document.getElementById(ElementId);
+                //If currently clicked menu is already opened then close it otherwise open it.
+                if (element.classList.contains("kt-menu__item--open")) {
+                    element.classList.remove("kt-menu__item--open");
+
+                    //Start for mobile device.
+                    var x = document.getElementById(ElementId).querySelectorAll("div");
+                    if (x != undefined) {
+                        x[0].style.display = "none";
+                        x[0].style.overflow = "hidden";
+                    }
+
+                    //Finished for mobile device
+                }
+                else {
+                    element.classList.add("kt-menu__item--open");
+
+                    //Start for mobile device.
+                    var x = document.getElementById(ElementId).querySelectorAll("div");
+                    if (x != undefined) {
+                        x[0].style.display = null;
+                        x[0].style.overflow = null;
+                    }
+                    //Finished for mobile device
+                }
+
+                //If previous mode is desktop then remove that class
+                if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
+                    element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                }
+            }
+            else {
+                if (LastActiveMenuId != ElementId) {
+                    var lastActiveMenuElement = document.getElementById(LastActiveMenuId);
+                    if (lastActiveMenuElement.classList.contains("kt-menu__item--open-dropdown") || lastActiveMenuElement.classList.contains("kt-menu__item--hover")) {
+                        lastActiveMenuElement.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                    }
+                }
+                var element = document.getElementById(ElementId);
+                if (element.classList.contains("kt-menu__item--open-dropdown") || element.classList.contains("kt-menu__item--hover")) {
+                    element.classList.remove("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                }
+                else {
+                    if (HasChild == true)
+                        element.classList.add("kt-menu__item--open-dropdown", "kt-menu__item--hover");
+                    else
+                        element.classList.add("kt-menu__item--here");
+                }
+
+                //If previous mode is mobile then remove that class
+                if (element.classList.contains("kt-menu__item--open")) {
+                    element.classList.remove("kt-menu__item--open");
+                }
+            }
+        }
     </script>
 
     <script src="_framework/blazor.server.js"></script>
-
 </body>
 </html>
 @*https://stackoverflow.com/questions/36695438/detect-click-outside-div-using-javascript/47974964*@
